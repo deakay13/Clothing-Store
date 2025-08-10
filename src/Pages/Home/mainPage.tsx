@@ -1,83 +1,116 @@
+import Ao1 from "@assets/Áo1.jpg";
+import Ao2 from "@assets/áo2.jpg";
+import Ao3 from "@assets/áo3.jpg";
+import Ao4 from "../../assets/Áo1.jpg";
 import MainBanner from "../../Component/Home/mainBanner";
-import { useEffect, useState } from "react";
-import { fetchProduct } from "../../Services/productServices";
-import type { Product } from "../../Services/productServices";
-import { Link } from "react-router-dom";
 
 export default function MainPage() {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  const featuredCategories = ["Áo", "Quần", "Phụ kiện", "Giày"];
-
-  useEffect(() => {
-    const loadProducts = async () => {
-      const allProducts = await fetchProduct();
-      setProducts(allProducts);
-    };
-    loadProducts();
-  }, []);
-
-  const renderCategorySection = (categoryName: string) => {
-    const filtered = products
-      .filter((p) => p.category === categoryName && p.rating && p.rating >= 5)
-      .slice(0, 4);
-
-    if (filtered.length === 0) return null;
-
-    return (
-      <div key={categoryName} className="mb-5">
-        <h2 className="text-center mb-4">Sản phẩm {categoryName} nổi bật</h2>
-        <div className="row g-3 mb-3">
-          {filtered.map((product) => (
-            <div key={product.id} className="col-3 d-flex align-items-stretch">
-              <div className="card shadow-sm h-100 d-flex flex-column">
-                <img
-                  src={product.img}
-                  className="card-img-top"
-                  style={{ height: "200px", objectFit: "cover" }}
-                  alt={product.name}
-                />
-                <div className="card-body d-flex flex-column justify-content-between">
-                  <div>
-                    <h5 className="card-title">{product.name}</h5>
-                    <p className="card-text text-muted">
-                      {product.description?.slice(0, 60)}...
-                    </p>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center mt-3">
-                    <span className="fw-bold text-danger">
-                      {product.price.toLocaleString()}đ
-                    </span>
-                    <Link
-                      to={`/ProductDetail/${product.id}`}
-                      className="btn btn-primary btn-sm"
-                    >
-                      Chi tiết
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center">
-          <Link
-            to={`/Product/${encodeURIComponent(categoryName)}`}
-            className="btn btn-outline-primary"
-          >
-            Xem tất cả {categoryName}
-          </Link>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div>
       <MainBanner />
-      <div className="container mt-4">
-        {featuredCategories.map((cat) => renderCategorySection(cat))}
+      <div className="container my-3">
+        <div className="row">
+          <div className="col-3 d-flex align-items-stretch">
+            <div className="card shadow-sm">
+              <img
+                src={Ao1}
+                className="card-img-top"
+                style={{ height: "200px", objectFit: "cover" }}
+                alt="Tên sản phẩm"
+              />
+              <div className="card-body">
+                <h5 className="card-title">Áo thun nam</h5>
+                <p className="card-text text-muted">
+                  Chất liệu cotton 100%, thoáng mát, phù hợp mùa hè.
+                </p>
+                <div className="d-flex justify-content-between align-items-center">
+                  <span className="fw-bold text-danger">250.000đ</span>
+                  <a
+                    href="productDetail.html"
+                    className="btn btn-primary btn-sm"
+                  >
+                    Mua Ngay
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-3 d-flex align-items-stretch">
+            <div className="card shadow-sm">
+              <img
+                src={Ao2}
+                className="card-img-top"
+                style={{ height: "200px", objectFit: "cover" }}
+                alt="Tên sản phẩm"
+              />
+              <div className="card-body">
+                <h5 className="card-title">Áo thun nam</h5>
+                <p className="card-text text-muted">
+                  Chất liệu cotton 100%, thoáng mát, phù hợp mùa hè.
+                </p>
+                <div className="d-flex justify-content-between align-items-center">
+                  <span className="fw-bold text-danger">250.000đ</span>
+                  <a
+                    href="productDetail.html"
+                    className="btn btn-primary btn-sm"
+                  >
+                    Mua Ngay
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-3 d-flex align-items-stretch">
+            <div className="card shadow-sm">
+              <img
+                src={Ao3}
+                className="card-img-top"
+                style={{ height: "200px", objectFit: "cover" }}
+                alt="Tên sản phẩm"
+              />
+              <div className="card-body">
+                <h5 className="card-title">Áo thun nam</h5>
+                <p className="card-text text-muted">
+                  Chất liệu cotton 100%, thoáng mát, phù hợp mùa hè.
+                </p>
+                <div className="d-flex justify-content-between align-items-center">
+                  <span className="fw-bold text-danger">250.000đ</span>
+                  <a
+                    href="productDetail.html"
+                    className="btn btn-primary btn-sm"
+                  >
+                    Mua Ngay
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-3 d-flex align-items-stretch">
+            <div className="card shadow-sm">
+              <img
+                src={Ao4}
+                className="card-img-top"
+                style={{ height: "200px", objectFit: "cover" }}
+                alt="Tên sản phẩm"
+              />
+              <div className="card-body">
+                <h5 className="card-title">Áo thun nam</h5>
+                <p className="card-text text-muted">
+                  Chất liệu cotton 100%, thoáng mát, phù hợp mùa hè.
+                </p>
+                <div className="d-flex justify-content-between align-items-center">
+                  <span className="fw-bold text-danger">250.000đ</span>
+                  <a
+                    href="productDetail.html"
+                    className="btn btn-primary btn-sm"
+                  >
+                    Mua Ngay
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

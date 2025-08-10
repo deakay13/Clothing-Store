@@ -1,58 +1,43 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { fetchProduct } from "../../Services/productServices";
-import type { Product } from "../../Services/productServices";
+import Ao1 from "@assets/Áo1.jpg";
 
-export default function ProductDetail() {
-    const { id } = useParams();
-    const [product, setProduct] = useState<Product | null>(null);
-
-    useEffect(() => {
-        const loadProduct = async () => {
-        const allProducts = await fetchProduct();
-        const found = allProducts.find((p) => p.id === id);
-        setProduct(found ?? null);
-        };
-        loadProduct();
-    }, [id]);
-
-    if (!product) {
-        return (
-        <div className="container py-5">
-            <h4 className="text-danger">Không tìm thấy sản phẩm.</h4>
-        </div>
-        );
-    }
-
+export default function productDetail() {
     return (
         <div className="container mb-5 mt-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-            <div className="row g-3">
+        <div className="card">
+            <div className="row g-0">
+            {/* <!-- Hình ảnh sản phẩm --> */}
             <div className="col-md-4">
                 <img
-                src={product.img}
+                src={Ao1}
                 className="img-fluid rounded w-95 h-100"
-                alt={product.name}
+                alt="Áo Thun Nam"
                 />
             </div>
+            {/* <!-- Nội dung chi tiết --> */}
             <div className="col-md-8 my-3">
-                <h2>{ product.name}</h2>
-                <p className="text-muted fw-bold">Danh Mục: {product.category}</p>
-                <h4 className="text-danger">{product.price.toLocaleString()}VND</h4>
-                <p>{product.description}</p>
+                <h2>Áo Thun Nam Cá Tính</h2>
+                <p className="text-muted">Thương hiệu: StreetStyleVN</p>
+                <h4 className="text-danger">250.000₫</h4>
+                <p>
+                Áo thun nam được thiết kế theo phong cách năng động, chất liệu
+                cotton co giãn 4 chiều, thấm hút mồ hôi tốt. Phù hợp cho cả đi
+                chơi và đi làm.
+                </p>
                 <ul>
-                    <li>Chất liệu: {product.material}</li>
-                    <li>Form: {product.form}</li>
-                    <li>Màu sắc: {product.color}</li>
-                    <li>Size: {product.size}</li>
+                <li>Chất liệu: 100% cotton</li>
+                <li>Form: Regular fit</li>
+                <li>Màu sắc: Đen, Trắng, Xanh navy</li>
+                <li>Size: M, L, XL, XXL</li>
                 </ul>
                 <div className="mb-3">
                 <label htmlFor="size" className="form-label">
                     Chọn size:
                 </label>
                 <select id="size" className="form-select w-50">
-                    {product.size.split(",").map((s) => (
-                    <option key={s}>{s.trim()}</option>
-                    ))}
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>XXL</option>
                 </select>
                 </div>
                 <button className="btn btn-primary">🛒 Thêm vào giỏ hàng</button>
@@ -223,6 +208,7 @@ export default function ProductDetail() {
                 </div>
             </div>
             </div>
+        </div>
         </div>
     );
 }

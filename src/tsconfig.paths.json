@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+        "@C_Home": ["Component/Home"],
+        "@C_Home/*": ["Component/Home/*"]
+        }
+    }
+}

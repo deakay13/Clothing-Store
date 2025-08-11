@@ -30,7 +30,7 @@ export default function Header() {
       alert("🔴 Đã đăng xuất thành công!");
       navigate("/SignIn");
     } catch (err) {
-      console.error("❌ Lỗi khi đăng xuất:", err);
+      alert("❌ Lỗi khi đăng xuất:" + err);
     }
   };
 
@@ -66,8 +66,6 @@ export default function Header() {
                   Trang chủ
                 </Link>
               </li>
-
-              {/* Dropdown Quần áo */}
               <li className="nav-item dropdown">
                 <button
                   className="nav-link fw-bold dropdown-toggle text-uppercase"

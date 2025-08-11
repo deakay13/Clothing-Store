@@ -2,10 +2,26 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchProduct } from "../../Services/productServices";
 import type { Product } from "../../Services/productServices";
+import { useCart } from "../../Services/cartServices";
 
 export default function ProductDetail() {
     const { id } = useParams();
     const [product, setProduct] = useState<Product | null>(null);
+    const { addToCart } = useCart();
+
+    const handleAdd = () => {
+    if (!product) return;
+
+    addToCart({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+
+    });
+
+    alert("🛒 Đã thêm vào giỏ hàng!");
+    };
 
     useEffect(() => {
         const loadProduct = async () => {
@@ -47,7 +63,7 @@ export default function ProductDetail() {
                         ))}
                     </select>
                     </div>
-                    <button className="btn btn-primary">🛒 Thêm vào giỏ hàng</button>
+                    <button className="btn btn-primary" onClick={handleAdd}>🛒 Thêm vào giỏ hàng</button>
                 </div>
             </div>
             <div className="d-flex justify-content-center mt-2"><hr className="w-50"/></div>

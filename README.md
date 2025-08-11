@@ -1,5 +1,5 @@
-# 📦 Tên Dự Án
-Tên dự án: clothing-store
+# 📦 clothing-store
+
 Mô tả ngắn gọn về dự án clothing-store: Phát triển trang web bán hàng tên Puppy, chuyên bán các sản phẩm quần áo và các phụ kiện đi kèm.
 
 ## 🚀 Tính năng

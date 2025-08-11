@@ -1,34 +1,7 @@
 import Chatmess from "../../assets/chatmessage.png";
-import { useState } from "react";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../Services/firebase";
+import ChartDB from "../../assets/chartDB1.png";
 
 export default function DashBoardPage() {
-    const [base64Image, setBase64Image] = useState<string>("");
-
-    const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (!event.target.files) return;
-        const file = event.target.files[0];
-        const reader = new FileReader();
-
-        reader.onloadend = async () => {
-            const base64 = reader.result as string;
-            setBase64Image(base64);
-
-            // Lưu vào Firestore
-            const imageRef = doc(db, "images", file.name);
-            await setDoc(imageRef, {
-            name: file.name,
-            data: base64,
-            uploadedAt: new Date(),
-            });
-        };
-
-        reader.readAsDataURL(file);
-    };
-
-
-
     return (
         <div className="m-2">
             <div className="d-flex justify-content-between gap-2 mb-2">
@@ -96,28 +69,7 @@ export default function DashBoardPage() {
                 </div>
                 <div className="card-body">
                     <div className="row">
-                        <div className="col-9">
-                            <h3>📤 Upload ảnh vào Firestore (Base64)</h3>
-                            <input type="file" onChange={handleUpload} />
-                            {base64Image && (
-                                <div className="mt-3">
-                                <p><strong>Ảnh đã lưu:</strong></p>
-                                <img src={base64Image} alt="Uploaded" style={{ maxWidth: "300px" }} />
-                                </div>
-                            )}
-                        </div>
-                        <div className="col-3">
-                            <div className="card">
-                            <div className="card-header">
-                                Featured
-                            </div>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">An item</li>
-                                <li className="list-group-item">A second item</li>
-                                <li className="list-group-item">A third item</li>
-                            </ul>
-                            </div>
-                        </div>
+                        <img src={ChartDB} alt="chartDB" />
                     </div>
                 </div>
             </div>

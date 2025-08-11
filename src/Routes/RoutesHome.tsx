@@ -28,7 +28,7 @@ export default function HomePage() {
             <Route path="/SignIn" element={<SignIn />} />
             <Route path="/SignUp" element={<SignUp />} />
             <Route path="/Product/:categoryName" element={<Product />} />
-            <Route path="/ProductDetail" element={<ProductDetail />} />
+            <Route path="/ProductDetail/:id" element={<ProductDetail />} />
             <Route path="/Guarantee" element={<Guarantee />} />
             <Route path="/Refund" element={<Refund />} />
           </Route>

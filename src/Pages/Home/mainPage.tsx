@@ -7,7 +7,23 @@ import { Link } from "react-router-dom";
 export default function MainPage() {
   const [products, setProducts] = useState<Product[]>([]);
 
-  const featuredCategories = ["Áo", "Quần", "Phụ kiện", "Giày"];
+  const featuredCategories = [
+    "Áo",
+    "Quần",
+    "Dây nịt",
+    "Giày",
+    "Đồ lót",
+    "Túi đeo",
+    "găng tay",
+    "Ví",
+    "Balo",
+    "vớ",
+    "Dụng cụ cá nhân",
+    "Nón",
+    "Nước Hoa",
+    "Dép",
+    "Khăn",
+  ];
 
   useEffect(() => {
     const loadProducts = async () => {

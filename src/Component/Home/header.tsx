@@ -8,6 +8,8 @@ import type { Category } from "../../Services/categoryServices";
 export default function Header() {
   const navigate = useNavigate();
   const [categories, setCategories] = useState<Category[]>([]);
+  const clothingNames = ["Áo", "Quần"];
+
 
   useEffect(() => {
     const loadCategory = async () => {
@@ -18,11 +20,11 @@ export default function Header() {
   }, []);
 
   const clothingCategories = categories.filter((cat) =>
-    ["Áo", "Quần"].includes(cat.name)
+    clothingNames.includes(cat.name)
   );
 
   const accessoryCategories = categories.filter(
-    (cat) => !["Áo", "Quần"].includes(cat.name)
+    (cat) => !clothingNames.includes(cat.name)
   );
 
   return (

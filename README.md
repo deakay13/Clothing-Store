@@ -1,69 +1,30 @@
-# React + TypeScript + Vite
+# 📦 Tên Dự Án
+Tên dự án: clothing-store
+Mô tả ngắn gọn về dự án clothing-store: Phát triển trang web bán hàng tên Puppy, chuyên bán các sản phẩm quần áo và các phụ kiện đi kèm.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Tính năng
 
-Currently, two official plugins are available:
+- ✅ Tính năng trang chủ: hiển thị danh sách sản phẩm tiêu biểu theo danh mục.
+- ✅ Tính năng trang sản phẩm: hiển thị danh sách tất cả các sản phẩm. 
+- ✅ Tính năng trang dashboard: hiển thị danh sách sản phẩm, danh sách tài khoản. CRUD sản phẩm, CRUD tài khoản.
+- ✅ Tính năng layout một số trang khác( có thể tự khám phá thêm).
+- ✅ Tính năng đầu trang: hiển thị dropdown điều hướng tới các sản phẩm theo danh mục, điều hướng tới trang đăng ký đăng nhập.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Công nghệ sử dụng
 
-## Expanding the ESLint configuration
+- React
+- Node.js / Express
+- Firebase
+- Bootstrap 5
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📦 Cài đặt
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Clone repo
+git clone https://github.com/deakay13/Clothing-Store.git
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+# Cài đặt dependencies
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+# Chạy ứng dụng
+npm run dev

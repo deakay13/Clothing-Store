@@ -17,33 +17,41 @@ import Profiles from "../Pages/DashBoard/proFiles"
 import Setting from "../Pages/DashBoard/setting"
 import ListCategory from "../Pages/DashBoard/listCategory"
 import ListProduct from "../Pages/DashBoard/listProduct"
-
+import { Navigate } from "react-router-dom"
 
 export default function HomePage() {
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route element={<HomeLayout />}>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/SignIn" element={<SignIn />} />
-            <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/Product/:categoryName" element={<Product />} />
-            <Route path="/ProductDetail/:id" element={<ProductDetail />} />
-            <Route path="/Guarantee" element={<Guarantee />} />
-            <Route path="/Refund" element={<Refund />} />
-          </Route>
-          <Route element={<DashBoard />}>
-            <Route path="/MainDash" element={<MainDash />} />
-            <Route path="/ListUser" element={<ListUser />} />
-            <Route path="/ListRoles" element={<ListRoles />} />
-            <Route path="/ListStaff" element={<ListStatff />} />
-            <Route path="/TimeKeeping" element={<TimeKeeping />} />
-            <Route path="/Profiles" element={<Profiles />} />
-            <Route path="/Setting" element={<Setting />} />
-            <Route path="/ListCategory" element={<ListCategory />} />
-            <Route path="/ListProduct" element={<ListProduct />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<HomeLayout />}>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/Product/:categoryName" element={<Product />} />
+          <Route path="/ProductDetail/:id" element={<ProductDetail />} />
+          <Route path="/Guarantee" element={<Guarantee />} />
+          <Route path="/Refund" element={<Refund />} />
+        </Route>
+        <Route
+          element={
+            localStorage.getItem("userRole") ? (
+              <DashBoard />
+            ) : (
+              <Navigate to="/SignIn" replace />
+            )
+          }
+        >
+          <Route path="/MainDash" element={<MainDash />} />
+          <Route path="/ListUser" element={<ListUser />} />
+          <Route path="/ListRoles" element={<ListRoles />} />
+          <Route path="/ListStaff" element={<ListStatff />} />
+          <Route path="/TimeKeeping" element={<TimeKeeping />} />
+          <Route path="/Profiles" element={<Profiles />} />
+          <Route path="/Setting" element={<Setting />} />
+          <Route path="/ListCategory" element={<ListCategory />} />
+          <Route path="/ListProduct" element={<ListProduct />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }

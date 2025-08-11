@@ -4,12 +4,14 @@ import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchCategory } from "../../Services/categoryServices";
 import type { Category } from "../../Services/categoryServices";
+import { getAuth, signOut } from "firebase/auth";
 
 export default function Header() {
   const navigate = useNavigate();
   const [categories, setCategories] = useState<Category[]>([]);
   const clothingNames = ["Áo", "Quần"];
-
+  const role = localStorage.getItem("userRole");
+  const userEmail = localStorage.getItem("userEmail") ?? "";
 
   useEffect(() => {
     const loadCategory = async () => {
@@ -18,6 +20,19 @@ export default function Header() {
     };
     loadCategory();
   }, []);
+
+  const handleLogout = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      localStorage.removeItem("userRole");
+      localStorage.removeItem("userEmail");
+      alert("🔴 Đã đăng xuất thành công!");
+      navigate("/SignIn");
+    } catch (err) {
+      console.error("❌ Lỗi khi đăng xuất:", err);
+    }
+  };
 
   const clothingCategories = categories.filter((cat) =>
     clothingNames.includes(cat.name)
@@ -108,19 +123,32 @@ export default function Header() {
               </li>
             </ul>
 
-            <button
-              onClick={() => navigate("/SignIn")}
-              className="btn btn-outline-primary me-2"
-            >
-              <i className="bi bi-person"></i> Đăng nhập
-            </button>
-            <button
-              className="btn btn-outline-danger"
-              data-bs-toggle="modal"
-              data-bs-target="#cartModal"
-            >
-              <i className="bi bi-cart"></i> Giỏ hàng
-            </button>
+            {/* ✅ Hiển thị theo trạng thái đăng nhập */}
+            {role === "user" ? (
+              <div className="d-flex align-items-center gap-3">
+                <span className="fw-bold text-success">Chào, {userEmail}</span>
+                <button
+                  className="btn btn-outline-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#cartModal"
+                >
+                  <i className="bi bi-cart"></i> Giỏ hàng
+                </button>
+                <button
+                  className="btn btn-outline-secondary"
+                  onClick={handleLogout}
+                >
+                  Đăng xuất
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => navigate("/Signin")}
+                className="btn btn-outline-primary"
+              >
+                <i className="bi bi-person"></i> Đăng nhập
+              </button>
+            )}
           </div>
         </div>
       </nav>

@@ -3,25 +3,41 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../../Services/authServices";
+import { getCurrentUserRole } from "../../Services/rolePermission";
 
 export default function SignInLayout() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
-
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             const userCredential = await loginUser(email, password);
-            const Email = userCredential.user.email;
+            const Email = userCredential.user.email ?? "";
+
+            const role = await getCurrentUserRole();
+            if (!role) {
+            alert("Không tìm thấy quyền người dùng");
+            return;
+            }
+            // Lưu thông tin vào localStorage
+            localStorage.setItem("userRole", role.name);
+            localStorage.setItem("userEmail", Email);
+
+            // Chuyển hướng theo role
+            if (role.name === "admin") {
             navigate("/MainDash");
-            alert("🟢 Đăng nhập thành công:" + Email);
-        } catch {
-            alert("tài khoản không đúng");
+            } else {
+            navigate("/");
+            }
+            alert(`🟢 Đăng nhập thành công: ${Email} với quyền: ${role.name}`);
+        } catch (error) {
+            console.error("Lỗi đăng nhập:", error);
+            alert("Tài khoản không đúng");
         }
     };
 
-    // const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
     return (
         <div className="container my-3 mb-3">
             <div className="card shadow-lg">

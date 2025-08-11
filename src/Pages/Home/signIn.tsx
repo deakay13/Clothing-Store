@@ -16,8 +16,8 @@ export default function SignInLayout() {
             const Email = userCredential.user.email;
             navigate("/MainDash");
             alert("🟢 Đăng nhập thành công:" + Email);
-        } catch (err) {
-            console.error("❌ Lỗi đăng nhập:", err);
+        } catch {
+            alert("tài khoản không đúng");
         }
     };
 
